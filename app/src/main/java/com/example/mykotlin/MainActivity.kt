@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,9 +25,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         val lm = LinearLayoutManager(this)
-//        main_recycleview.adapter = adapter
-//        main_recycleview.layoutManager = lm
-//        main_recycleview.setHasFixedSize(true)
+        main_recycleview.adapter = adapter
+        main_recycleview.layoutManager = lm
+        main_recycleview.setHasFixedSize(true)
 
         contactViewModel = ViewModelProviders.of(this).get(ContactViewModel::class.java)
         contactViewModel.getAll().observe(this, Observer<List<Contact>> { contacts ->
