@@ -4,7 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.mykotlin.data.model.Contact
 
+/**
+ * RoomDatabase를 상속하는 추상클래스이며, 테이블과
+ * 버전을 정의하는 곳이다.
+ **/
 @Database(entities = [Contact::class], version = 1)
 abstract class ContactDatabase: RoomDatabase()
 {

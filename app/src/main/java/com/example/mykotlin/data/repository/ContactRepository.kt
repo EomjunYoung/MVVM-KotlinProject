@@ -1,13 +1,18 @@
-package com.example.mykotlin
+package com.example.mykotlin.data.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import com.example.mykotlin.ContactDao
+import com.example.mykotlin.ContactDatabase
+import com.example.mykotlin.data.model.Contact
 import java.lang.Exception
 
 class ContactRepository(application: Application){
 
 
-    private val contactDatabase = ContactDatabase.getInstance(application)!!
+    private val contactDatabase = ContactDatabase.getInstance(
+        application
+    )!!
     private val contactDao: ContactDao = contactDatabase.contactDao()
     private val contacts: LiveData<List<Contact>> = contactDao.getAll()
 
