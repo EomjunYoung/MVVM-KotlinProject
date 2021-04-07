@@ -1,13 +1,17 @@
 package com.example.mykotlin.presentation.view
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
+//import android.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.mykotlin.presentation.viewModel.ContactViewModel
 import com.example.mykotlin.R
 import com.example.mykotlin.data.model.Contact
 import kotlinx.android.synthetic.main.activity_add.*
+import java.nio.file.Files.find
 
 class AddActivity : AppCompatActivity() {
 
@@ -18,9 +22,15 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+//        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);//뒤로가기 버튼추가
+
+
         contactViewModel = ViewModelProviders.of(this).get(ContactViewModel::class.java)
 
-         //intent null check & get extras
+        //intent null check & get extras
+        //RecyclerView item을 한번클릭하면 값이 넘어오면서 수정할 수 있게하기 위한 code
         if (intent != null && intent.hasExtra(EXTRA_CONTACT_NAME) && intent.hasExtra(
                 EXTRA_CONTACT_NUMBER
             )
@@ -56,4 +66,14 @@ class AddActivity : AppCompatActivity() {
         const val EXTRA_CONTACT_NUMBER = "EXTRA_CONTACT_NUMBER"
         const val EXTRA_CONTACT_ID = "EXTRA_CONTACT_ID"
     }
+
+    override fun onOptionsItemSelected(item: MenuItem):Boolean{
+
+        if(item.itemId == android.R.id.home){
+            finish()
+            return true
+        }
+        return false
+    }
+
 }
