@@ -70,6 +70,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddActivity::class.java)
             startActivity(intent)
         }
+
+        mypage_button.setOnClickListener{
+            val intent = Intent(this, MypageActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun deleteDialog(contact: Contact) {

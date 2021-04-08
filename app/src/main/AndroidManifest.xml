@@ -22,6 +22,7 @@
         </activity>
 
         <activity android:name=".presentation.view.AddActivity"/>
+        <activity android:name=".presentation.view.MypageActivity"/>
 
 
     </application>

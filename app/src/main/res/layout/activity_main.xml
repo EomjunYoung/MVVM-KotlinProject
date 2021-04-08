@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     tools:context=".presentation.view.MainActivity">
 
     <TextView
@@ -30,7 +31,8 @@
 
     <Button
         android:text="Add"
-        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/main_button"
         android:layout_marginBottom="8dp"
@@ -40,5 +42,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"/>
+
+    <Button
+        android:gravity="center"
+        android:id="@+id/mypage_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="ModifyMyPage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/main_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
