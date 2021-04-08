@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+
         // Set contactItemClick & contactItemLongClick lambda
         // 첫번째인자는 한번클릭시 이벤트를 람다식으로, 두번째인자는 길게클릭시 이벤트를
         // 람다식으로 나타낸것이다.
@@ -28,18 +31,18 @@ class MainActivity : AppCompatActivity() {
          * RecyclerView는 Adapter에서 별도로 클릭 리스너를 설정해주어야 한다. **/
         val adapter = ContactAdapter({ contact ->
             val intent =
-                Intent(this, AddActivity::class.java)
+                    Intent(this, AddActivity::class.java)
             intent.putExtra(
-                AddActivity.EXTRA_CONTACT_NAME,
-                contact.name
+                    AddActivity.EXTRA_CONTACT_NAME,
+                    contact.name
             )
             intent.putExtra(
-                AddActivity.EXTRA_CONTACT_NUMBER,
-                contact.number
+                    AddActivity.EXTRA_CONTACT_NUMBER,
+                    contact.number
             )
             intent.putExtra(
-                AddActivity.EXTRA_CONTACT_ID,
-                contact.id
+                    AddActivity.EXTRA_CONTACT_ID,
+                    contact.id
             )
             startActivity(intent)
         }, { contact ->
