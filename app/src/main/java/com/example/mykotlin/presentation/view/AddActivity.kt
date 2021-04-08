@@ -1,22 +1,40 @@
 package com.example.mykotlin.presentation.view
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 //import android.widget.Toolbar
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.mykotlin.presentation.viewModel.ContactViewModel
 import com.example.mykotlin.R
 import com.example.mykotlin.data.model.Contact
+import com.google.firebase.FirebaseApp
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_add.*
 import java.nio.file.Files.find
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.jar.Manifest
 
 class AddActivity : AppCompatActivity() {
 
     private lateinit var contactViewModel: ContactViewModel
     private var id: Long? = null
+
+    private var fbStorage : FirebaseStorage? = null
+    private var pickImageFromAlbum = 0
+    private var uriPhoto : Uri? = null
+    private var viewProfile : View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +43,18 @@ class AddActivity : AppCompatActivity() {
 //        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);//뒤로가기 버튼추가
+        supportActionBar?.title = "아이템 추가하기" //툴바 타이틀 설정
+
+        FirebaseApp.initializeApp(this)
+        fbStorage = FirebaseStorage.getInstance()
+
+        xml_frg_prf_btn_upload.setOnClickListener{
+            //open album
+            var photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            startActivityForResult(photoPickerIntent, pickImageFromAlbum)
+        }
+
 
 
         contactViewModel = ViewModelProviders.of(this).get(ContactViewModel::class.java)
@@ -67,13 +97,46 @@ class AddActivity : AppCompatActivity() {
         const val EXTRA_CONTACT_ID = "EXTRA_CONTACT_ID"
     }
 
-    override fun onOptionsItemSelected(item: MenuItem):Boolean{
+    //toolbar의
+    override fun onOptionsItemSelected(item: MenuItem):Boolean {
 
-        if(item.itemId == android.R.id.home){
-            finish()
-            return true
+        when(item?.itemId) {
+
+            android.R.id.home -> {
+                finish()
+                return super.onOptionsItemSelected(item)
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
         }
-        return false
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == pickImageFromAlbum){
+            if(resultCode == Activity.RESULT_OK){
+                uriPhoto = data?.data
+                xml_frg_prf_img_profile.setImageURI(uriPhoto)
+
+                if(ContextCompat.checkSelfPermission(viewProfile!!.context,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+                    funImageUpload(viewProfile!!)
+                }
+            }
+        }
+    }
+
+    private fun funImageUpload(view: View){
+        var timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        var imgFileName = "IMAGE_" + timeStamp + "_.png"
+        var storageRef = fbStorage?.reference?.child("Image")?.child(imgFileName)
+
+        storageRef?.putFile(uriPhoto!!)?.addOnSuccessListener {
+            Toast.makeText(view.context, "Image Uploaded", Toast.LENGTH_LONG).show()
+        }
+    }
 }
+
