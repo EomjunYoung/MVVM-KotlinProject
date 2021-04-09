@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -8,30 +9,254 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/tv_patientName"
             android:layout_gravity="center"
             android:background="@color/white"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="30dp"
             android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/et_patientName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@+id/tv_patientName"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/black"
             />
 
         <TextView
+            android:id="@+id/tv_gender"
             android:layout_gravity="center"
-            android:id="@+id/tv_age"
             android:background="@color/white"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:text="@{user.age}"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_patientName"
             android:textColor="@color/black"
             />
-    </LinearLayout>
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/tv_gender"
+            app:layout_constraintTop_toBottomOf="@+id/et_patientName">
+
+            <RadioButton
+                android:id="@+id/btn_man"
+                android:text="남"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/btn_woman"
+                android:text="여"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_patientId"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gender"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/et_patientId"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@+id/tv_patientId"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tv_departmentName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_patientId"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/et_departmentName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@+id/tv_departmentName"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/et_patientId"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tv_physicianName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_departmentName"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/et_physicianName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@+id/tv_physicianName"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/et_departmentName"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tv_wardName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_physicianName"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/et_wardName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@+id/tv_wardName"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/et_physicianName"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tv_bedName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_wardName"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/et_bedName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@+id/tv_bedName"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/et_wardName"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tv_roomName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bedName"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/et_roomName"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@+id/tv_roomName"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/et_bedName"
+            android:textColor="@color/black"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
