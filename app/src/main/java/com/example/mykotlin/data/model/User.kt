@@ -2,7 +2,13 @@ package com.example.mykotlin.data.model
 
 data class User(
 
-    var name: String = "",
-    var age: String = ""
+    var patientName: String = "",
+    var gender: String = "",
+    var patientId: String = "",
+    var departmentName: String = "",
+    var physicianName: String = "",
+    var wardName: String = "",
+    var bedName: String = "",
+    var roomName: String = ""
 
 )

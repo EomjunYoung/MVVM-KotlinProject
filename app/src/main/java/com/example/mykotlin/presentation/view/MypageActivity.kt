@@ -18,16 +18,35 @@ class MypageActivity : AppCompatActivity(){
         //이를 통해 DataBinding된 xml을 inflate하고, id를 불러올 수 있다.
         var binding: ActivityMypageBinding = DataBindingUtil.setContentView(this, R.layout.activity_mypage)
 
-        //textview 등 component의 id는 카멜표기법으로 자동생성된다.
-        binding.tvPatientName.text = "엄준영"
-//        binding.tvAge.text = "30"
-        binding.etPatientName
+//        textview 등 component의 id는 카멜표기법으로 자동생성된다.
+//        binding.tvPatientName.text = "엄준영"
 
-        binding.user = User("eom", "30")
+        var txtGender =""
+
+        binding.radioGroup.setOnCheckedChangeListener{
+                radioGroup, checkedId ->
+            when(checkedId){
+                R.id.btn_man -> {txtGender = "남"}
+                R.id.btn_woman -> {txtGender = "여"}
+            }
+        }
 
 
-//        tv_name.setText("엄준영")
-//        tv_age.setText("302")
+        binding.btnSave.setOnClickListener{
+
+
+            binding.user = User(binding.etPatientName.text.toString(),
+                txtGender,
+                binding.etPatientId.text.toString(),
+                binding.etDepartmentName.text.toString(),
+                binding.etPhysicianName.text.toString(),
+                binding.etWardName.text.toString(),
+                binding.etBedName.text.toString(),
+                binding.etRoomName.text.toString())
+        }
+
+
+
 
 
     }
