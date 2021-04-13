@@ -45,20 +45,14 @@ class MypageActivity : AppCompatActivity(){
 //            })
 //
 //        })
-        userViewModel.getAll().observe(this, Observer<User> {
+        userViewModel.getAll().observe(this, Observer<User> {userObserver ->
 
-//            binding.user?.patientName = "51"
+            if(userObserver!=null) {
 
-            if(it!=null)
-           Log.d("eom", it.patientName)
-            else
-                Log.d("eom", "test")
-            //binding.tvPatientName.text = it.patientName
-
+                binding.user = User(userObserver.patientName, userObserver.gender, 123,
+                "진료과","진료의","병동","침대번호", "방번호")
+            }
         })
-
-
-
 
         var txtGender =""
 
@@ -76,17 +70,19 @@ class MypageActivity : AppCompatActivity(){
             var user = User(binding.etPatientName.text.toString(), txtGender, binding.etPatientId.text.toString().toLong(),
             binding.etDepartmentName.text.toString(), binding.etPhysicianName.text.toString(), binding.etWardName.text.toString(), binding.etBedName.text.toString(),
             binding.etRoomName.text.toString())
-//
-//            binding.user = User(binding.etPatientName.text.toString(), txtGender, binding.etPatientId.text.toString().toLong(),
-//                binding.etDepartmentName.text.toString(), binding.etPhysicianName.text.toString(), binding.etWardName.text.toString(), binding.etBedName.text.toString(),
-//                binding.etRoomName.text.toString())
 
-            userViewModel.update(user)
-
-
-
+            userViewModel.insert(user)
         }
 
+
+        binding.btnUpdate.setOnClickListener{
+
+            var user = User(binding.etPatientName.text.toString(), txtGender, binding.etPatientId.text.toString().toLong(),
+                    binding.etDepartmentName.text.toString(), binding.etPhysicianName.text.toString(), binding.etWardName.text.toString(), binding.etBedName.text.toString(),
+                    binding.etRoomName.text.toString())
+
+            userViewModel.update(user)
+        }
 
 
 

@@ -12,7 +12,7 @@ import com.example.mykotlin.data.model.User
 @Dao
 interface UserDao{
 
-    @Query("Select * from user order by patientName asc")
+    @Query("Select * from user")
     fun getAll(): LiveData<User>
 
 //
