@@ -71,8 +71,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+//        mypage_button.setOnClickListener{
+//            val intent = Intent(this, MypageActivity::class.java)
+//            startActivity(intent)
+//        }
+
         mypage_button.setOnClickListener{
-            val intent = Intent(this, MypageActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
     }
