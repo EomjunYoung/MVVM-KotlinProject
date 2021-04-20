@@ -80,6 +80,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
+
+        login_button.setOnClickListener{
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun deleteDialog(contact: Contact) {

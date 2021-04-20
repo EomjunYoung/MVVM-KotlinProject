@@ -24,6 +24,7 @@
         <activity android:name=".presentation.view.AddActivity"/>
         <activity android:name=".presentation.view.MypageActivity"/>
         <activity android:name=".presentation.view.SignInActivity"/>
+        <activity android:name=".presentation.view.LoginActivity"/>
 
 
     </application>
