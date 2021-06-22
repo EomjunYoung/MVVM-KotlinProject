@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var contactViewModel: ContactViewModel
 
+    private lateinit var testbranch2: String = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
